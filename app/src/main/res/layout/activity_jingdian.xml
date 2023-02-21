@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".JingdianActivity">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:orientation="vertical"
+        tools:context=".JingdianActivity">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:id="@+id/jingdianactivity_header"
+            android:scaleType="fitXY"></ImageView>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_title"
+            android:text="我事标题"
+            android:layout_marginTop="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|left"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            />
+        <TextView
+            android:layout_marginTop="16dp"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/gray"
+            android:textSize="14sp"
+            android:text="我事地址"
+            android:id="@+id/tv_address"></TextView>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="我是开发时间"
+            android:layout_marginTop="16dp"
+
+            android:textColor="@color/gray"
+            android:textSize="14sp"
+            />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="我是评分"
+            android:layout_marginTop="16dp"
+
+            android:textColor="@color/colorAccent"
+            android:textSize="14sp"
+            />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:text="简介："
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+
+            android:layout_gravity="center_vertical|left"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:scaleType="fitXY"
+            android:layout_marginTop="16dp"
+
+            android:id="@+id/des_iamge1"></ImageView>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:scaleType="fitXY"
+            android:layout_marginTop="16dp"
+
+            android:id="@+id/des_iamge2"></ImageView>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_des"
+            android:layout_marginTop="16dp"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="我是开发时间"
+            android:textColor="@color/gray"
+            android:textSize="14sp"
+            />
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

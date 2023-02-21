@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" >
+<!--    定义圆角-->
+    <corners
+    android:radius="15dp"
+   />
+<!--    内部填充色-->
+    <solid android:color="#9956FC"/>
+
+    <!--    stroke-->
+    <!--    width      描边的宽度-->
+    <!--   color 描边的颜色-->
+    <!--     以下两个属性设置虚线 -->
+    <!--   dashWidth 虚线的宽度，值为0时是实线-->
+    <!--   dashGap 虚线的间隔-->
+
+     <size
+    android:width="30dp"
+    android:height="30dp" />
+</shape>

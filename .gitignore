@@ -1,0 +1,10 @@
+*.iml
+.gradle
+/local.properties
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.idea
+# git rm -r --cached .idea
+# .idea已经被git跟踪，之后再加入.gitignore后是没有作用的

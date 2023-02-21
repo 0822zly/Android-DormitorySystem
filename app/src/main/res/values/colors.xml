@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="tinkcolor">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#7D59F4</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="gray">#50000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="ac_bg">#F5F6FA</color>
+
+
+    <color name="colorPrimary">#1B82DA</color>
+    <color name="colorPrimaryDark">#1B82DA</color>
+    <color name="colorAccent">#1B82DA</color>
+    <color name="home_item_text_color">@color/tv3</color>
+    <color name="back_gray">#F7F7F7</color>
+    <color name="gray_a0">#a0a0a0</color>
+    <color name="regist_red">#FF0000</color>
+    <color name="borrow_red">#D53939</color>
+    <color name="borrow_normal">#7d7d7d</color>
+    <color name="tabbar_normal">#999999</color>
+    //TableLayout被选中是标题的颜色
+    <color name="rl_pressed_bg">#22000000</color>
+    <color name="rl_bg">#ffffff</color>
+    <color name="person_gray">#444444</color>
+    <color name="transparent">#00000000</color>
+    <color name="common_blue">#ff2a83d3</color>
+    <color name="common_gray">#f7f7f7</color>
+    <color name="gray_66">#666666</color>
+    <color name="search_pressed">#ee7259</color>
+    <color name="search_presse">#e12d09</color>
+    <color name="viewfinder_frame">#ff000000</color>
+    <color name="viewfinder_laser">#ffff0000</color>
+    <color name="viewfinder_mask">#60000000</color>
+    <color name="result_view">#b0000000</color>
+    <color name="possible_result_points">#c0ffff00</color>
+
+    <!-- 画面背景色 -->
+
+    <!-- 分割线背景色 -->
+
+    <!-- 控件按下时显示的颜色 -->
+
+    <color name="text_comonsearch_color">#7d7d7d</color>
+    <color name="text_his_color">#2c2c2c</color>
+
+    <!--        变肤-->
+
+    <color name="top_bar">#1B82DA</color>
+
+    <color name="line0">#dcdcdc</color>
+    <color name="line1">#dedede</color>
+
+    <color name="bg0">#f8f8f8</color>
+    <color name="bg1">#f7f7f7</color>
+
+    <color name="tv0">#999999</color>
+    <color name="tv1">#ffffff</color>
+    <color name="tv2">#333333</color>
+    <color name="tv3">#032032</color>
+    <color name="tv4">#000000</color>
+    <color name="tv5">#707070</color>
+    <color name="tv6">#7d7d7d</color>
+    <color name="tv7">#2a83d3</color>
+    <color name="tv8">#c2c2c2</color>
+
+    <color name="stroke0">#cccccc</color>
+    <color name="shadow0">#1a000000</color>
+    <color name="shadow1">#ffffff</color>
+
+
+    <!--    首页-->
+    <color name="home_bg1">#f7f7f7</color>
+    <color name="home_bg0">#f8f8f8</color>
+
+    <color name="home_colorPrimary">#1B82DA</color>
+    <color name="home_top_bar">#1B82DA</color>
+
+    <color name="home_tv1">#ffffff</color>
+    <color name="home_tv2">#333333</color>
+    <color name="home_tv3">#032032</color>
+    <color name="home_tv4">#000000</color>
+    <color name="home_tv5">#707070</color>
+    <color name="home_tv6">#7d7d7d</color>
+    <color name="home_tv7">#2a83d3</color>
+    <color name="home_tv8">#c2c2c2</color>
+
+    <color name="home_shadow0">#1a000000</color>
+    <color name="home_shadow1">#ffffff</color>
+
+
+    <color name="grey"> #ebebeb</color>
+    <color name="darkgrey"> #C0C0C0</color>
+    <color name="red"> #FF0000</color>
+    <color name="f850_default_blue">#0079ff</color>
+
+    <drawable name="transparent">#00000000</drawable>
+
+
+    <color name="header_toast_bg">#ccebfc</color>
+    <color name="header_toast">#024ca1</color>
+    <color name="header_toast_line">#abdaf4</color>
+    <color name="offline_down_title">#909090</color>
+    <color name="offline_head_font">#FFFFFF</color>
+    <color name="gary">#898989</color>
+    <color name="taobao_black">#333333</color>
+    <color name="offline_down_size">#777777</color>
+    <color name="gray_lite">#c5c5c5</color>
+    <color name="progress_background">#ededed</color>
+    <color name="blue">#4c90f9</color>
+    <color name="itemlist">#f4f4f4</color>
+    <color name="act_background">#efefef</color>
+    <color name="phone_bg">#f6f6f6</color>
+    <color name="translucent">#66000000</color>
+    <color name="color666">#661B85FF</color>
+    <color name="color_1B85FF">#1B85FF</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorBlack">#000000</color>
+</resources>
