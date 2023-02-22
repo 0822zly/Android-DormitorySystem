@@ -8,4 +8,5 @@ public interface InterBook {
     String getType();
     String getContent();
     String getAuther();
+    String getTime();
 }

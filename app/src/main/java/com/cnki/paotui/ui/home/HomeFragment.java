@@ -124,12 +124,13 @@ public class HomeFragment extends Fragment {
                 book.content=info;
             }
             list.add(book);
-            handler.post(new Runnable() {
-                @Override
-                public void run() {
-                    bookAdaper.setNewInstance(list);
-                }
-            });
+
         }
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                bookAdaper.setNewInstance(list);
+            }
+        });
     }
 }

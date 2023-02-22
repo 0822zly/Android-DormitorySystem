@@ -10,6 +10,8 @@ public class Book implements InterBook {
    public String type;
    public String content;
    public String auther;
+   public String time;
+   public String newchapter;//
     @Override
     public String getId() {
         return id;
@@ -43,5 +45,10 @@ public class Book implements InterBook {
     @Override
     public String getAuther() {
         return auther;
+    }
+
+    @Override
+    public String getTime() {
+        return time;
     }
 }
