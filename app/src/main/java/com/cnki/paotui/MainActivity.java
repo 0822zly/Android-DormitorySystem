@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
         supportFragmentManager = getSupportFragmentManager();
-getSupportActionBar().hide();
+        getSupportActionBar().hide();
         navView = findViewById(R.id.nav_view);
         HomeFragment home= new HomeFragment();
         mapFrag.put(0,home);

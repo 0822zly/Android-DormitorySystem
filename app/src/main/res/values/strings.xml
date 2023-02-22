@@ -11,7 +11,7 @@
     <string name="login_failed">"Login failed"</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_home">首页</string>
-    <string name="title_dashboard">行程</string>
+    <string name="title_dashboard">书架</string>
     <string name="title_notifications">订单</string>
     <string name="title_person">我的</string>
 
