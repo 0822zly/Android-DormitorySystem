@@ -1,6 +1,7 @@
 package com.cnki.paotui.ui.home;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -13,9 +14,14 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.cnki.paotui.R;
+import com.cnki.paotui.SearchActivity;
+import com.cnki.paotui.TypeActivity;
 import com.cnki.paotui.adapter.BookAdaper;
 import com.cnki.paotui.bean.Book;
+import com.cnki.paotui.bookDetailsActivity;
 import com.cnki.paotui.utils.ThreadPoolExecutorUtil;
 
 import org.jsoup.Jsoup;
@@ -41,6 +47,14 @@ public class HomeFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         bookAdaper = new BookAdaper(R.layout.item_home_book);
         recyclerView.setAdapter(bookAdaper);
+        bookAdaper.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(@NonNull BaseQuickAdapter<?, ?> adapter, @NonNull View view, int position) {
+                Intent intent=new Intent(getContext(), bookDetailsActivity.class);
+                intent.putExtra("url",bookAdaper.getData().get(position).url);
+                getActivity().startActivity(intent);
+            }
+        });
         ThreadPoolExecutorUtil.doTask(new Runnable() {
             @Override
             public void run() {
@@ -50,25 +64,41 @@ public class HomeFragment extends Fragment {
         mRootView.findViewById(R.id.nanpin).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent=new Intent(getActivity(), TypeActivity.class);
+                intent.putExtra("key",0);
+                startActivity(intent);
             }
         });
         mRootView.findViewById(R.id.nvpin).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent=new Intent(getActivity(), TypeActivity.class);
+                intent.putExtra("key",1);
+                startActivity(intent);
+            }
+        });
+        mRootView.findViewById(R.id.search).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getActivity(), SearchActivity.class);
+                intent.putExtra("key",1);
+                startActivity(intent);
             }
         });
         mRootView.findViewById(R.id.tuijian).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent=new Intent(getActivity(), TypeActivity.class);
+                intent.putExtra("key",2);
+                startActivity(intent);
             }
         });
         mRootView.findViewById(R.id.zuixin).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent=new Intent(getActivity(), TypeActivity.class);
+                intent.putExtra("key",3);
+                startActivity(intent);
             }
         });
         return mRootView;

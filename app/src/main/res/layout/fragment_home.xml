@@ -20,6 +20,13 @@
             android:textSize="14sp"
             android:text="首页"
             />
+        <View
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="right|center_vertical"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/ic_baseline_search_24"
+            android:id="@+id/search"></View>
     </FrameLayout>
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"

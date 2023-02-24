@@ -1,6 +1,8 @@
 package com.cnki.paotui.adapter;
 
+import android.text.Html;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,7 +28,8 @@ public class BookAdaper extends BaseQuickAdapter<Book, BaseViewHolder> {
     protected void convert(@NonNull BaseViewHolder holder, Book item) {
         holder.setText(R.id.tv_title, item.title);
         holder.setText(R.id.tv_auther, item.auther);
-        holder.setText(R.id.tv_info, item.content);
+        TextView tv_sds=holder.getView(R.id.tv_info);
+        tv_sds.setText(Html.fromHtml(item.content));
         ImageView iamge=holder.getView(R.id.item_image);
                 Glide.with(getContext()).load(item.cover).into(iamge);
     }

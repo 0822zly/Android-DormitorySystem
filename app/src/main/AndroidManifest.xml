@@ -37,6 +37,20 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="28">
         <activity
+            android:name=".SearchActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ReadActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".JingdianActivity"
             android:exported="false">
             <meta-data
@@ -61,9 +75,34 @@
                 android:value="" />
         </activity>
         <activity
+            android:name=".AddBookActivity"
+            android:exported="true"
+            android:label="我的书籍">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".RegisterActivity"
             android:exported="false"
             android:label="注册">
+            />
+        </activity>
+        <activity
+            android:name=".TypeActivity"
+            android:exported="false"
+            android:label="男频">
+            />
+        </activity>
+        <activity
+            android:name=".AbortActivity"
+            android:exported="false"
+            android:label="关于">
+            />
+        </activity>
+        <activity
+            android:name=".bookDetailsActivity"
+            android:exported="false">
             />
         </activity>
         <activity
@@ -109,30 +148,30 @@
         <activity
             android:name=".ui.login.LoginActivity"
             android:exported="true"
-            android:label="登录"></activity>
+            android:label="登录" />
         <activity
             android:name=".AddTralltion"
             android:exported="true"
-            android:label="添加旅程"></activity>
+            android:label="添加旅程" />
         <activity
             android:name=".PoiActivity"
             android:exported="true"
-            android:label="添加旅程"></activity>
+            android:label="添加旅程" />
         <activity
             android:name=".MyCollentActivity"
             android:exported="true"
-            android:label="我得收藏"></activity>
+            android:label="我得收藏" />
         <activity
             android:name=".MapActivity"
             android:exported="true"
-            android:label="登录"></activity>
+            android:label="登录" />
         <activity
             android:name=".PoiSearchActivity"
             android:exported="true"
-            android:label="搜索酒店"></activity>
+            android:label="搜索酒店" />
         <activity
             android:name=".SplashActivity"
-            android:exported="true"></activity> <!-- //别忘了换成你自己的包名,另外这个字符串就是EasyPhotos.setFileProviderAuthoritiesText()的参数 -->
+            android:exported="true" /> <!-- //别忘了换成你自己的包名,另外这个字符串就是EasyPhotos.setFileProviderAuthoritiesText()的参数 -->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.cnki.paotui.fileprovider"

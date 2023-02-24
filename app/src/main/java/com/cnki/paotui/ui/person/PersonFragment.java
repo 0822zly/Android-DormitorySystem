@@ -3,18 +3,25 @@ package com.cnki.paotui.ui.person;
 import static com.cnki.paotui.Ikeys.ISFROMMAIN;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.cnki.paotui.AbortActivity;
+import com.cnki.paotui.AddBookActivity;
 import com.cnki.paotui.App;
 import com.cnki.paotui.Event;
 import com.cnki.paotui.GlideEngine;
@@ -23,12 +30,14 @@ import com.cnki.paotui.MainActivity;
 import com.cnki.paotui.MyCollentActivity;
 import com.cnki.paotui.MyTrallActivity;
 import com.cnki.paotui.R;
+import com.cnki.paotui.ReadActivity;
 import com.cnki.paotui.databinding.FragmentPersonBinding;
 import com.cnki.paotui.db.Order;
 import com.cnki.paotui.db.OrderDao;
 import com.cnki.paotui.db.UserDao;
 import com.cnki.paotui.requestActivity;
 import com.cnki.paotui.ui.login.LoginActivity;
+import com.cnki.paotui.ui.pop.SettingPop;
 import com.cnki.paotui.utils.SPUtil;
 import com.huantansheng.easyphotos.EasyPhotos;
 import com.huantansheng.easyphotos.callback.SelectCallback;
@@ -109,9 +118,7 @@ public class PersonFragment extends Fragment {
             binding.lineXingcheng.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent=new Intent(getActivity(), MyTrallActivity.class);
 
-                    getActivity().startActivity(intent);
                 }
             });
             if(!TextUtils.isEmpty(App.user.url)){
@@ -121,10 +128,9 @@ public class PersonFragment extends Fragment {
             binding.lineShenqing.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if(App.user.usertype==0){
-                        Intent intent=new Intent(getActivity(), MyCollentActivity.class);
-                        getActivity().startActivity(intent);
-                    }
+                    Intent intent=new Intent(getActivity(), AddBookActivity.class);
+
+                    getActivity().startActivity(intent);
                 }
             });
 
@@ -134,10 +140,123 @@ public class PersonFragment extends Fragment {
                     showChoceImage(binding.imagePhoto);
                 }
             });
+            binding.guanyu.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent=new Intent(getActivity(), AbortActivity.class);
+                    getActivity().startActivity(intent);
+                }
+            });
+            binding.setting.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    showSet();
+                }
+            });
         }
 
    }
+    SettingPop settingPop;
 
+    public void showSet() {
+
+            if(settingPop==null) {
+                settingPop = new SettingPop(getActivity());
+                View jian = settingPop.findViewById(R.id.bt_jian);
+                View jia = settingPop.findViewById(R.id.bt_jia);
+                View bg1 = settingPop.findViewById(R.id.bg1);
+                View bg2 = settingPop.findViewById(R.id.bg2);
+                View bg3 = settingPop.findViewById(R.id.bg3);
+                View bg4 = settingPop.findViewById(R.id.bg4);
+                View tv_light = settingPop.findViewById(R.id.tv_light);
+                View tv_night = settingPop.findViewById(R.id.tv_night);
+                TextView tvsize = settingPop.findViewById(R.id.tv_pop_size);
+                CheckBox ishuyan = settingPop.findViewById(R.id.ishuyan);
+                ishuyan.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                        if (b) {
+                            //  viewBinding.scroll.setBackgroundColor(Color.parseColor("#E8D3A9"));
+                        } else {
+
+                        }
+                    }
+                });
+                bg1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        SPUtil.getInstance().setValue("textcolor", "#C8E4CB");
+
+                    }
+                });
+                bg2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        SPUtil.getInstance().setValue("textcolor", "#E8D3A9");
+
+                    }
+                });
+                bg3.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        SPUtil.getInstance().setValue("textcolor", "#EBEEF7");
+
+                    }
+                });
+                bg4.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        SPUtil.getInstance().setValue("textcolor", "#DFC8A8");
+
+                    }
+                });
+                tv_light.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View view) {
+                        SPUtil.getInstance().setValue("isnight", false);
+
+                    }
+                });
+                tv_night.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View view) {
+                        SPUtil.getInstance().setValue("isnight", true);
+
+                    }
+                });
+                jian.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        int size = SPUtil.getInstance().getInt("textsize");
+                        if (size == 10) {
+                            Toast.makeText(getActivity(), "范围为10-20", Toast.LENGTH_SHORT).show();
+                        } else {
+                            tvsize.setText((size - 1) + "");
+                            SPUtil.getInstance().setValue("textsize", size - 1);
+
+                        }
+                    }
+                });
+                jia.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        int size = SPUtil.getInstance().getInt("textsize");
+                        if (size == 20) {
+                            Toast.makeText(getActivity(), "范围为10-20", Toast.LENGTH_SHORT).show();
+                        } else {
+                            tvsize.setText((size + 1) + "");
+                            SPUtil.getInstance().setValue("textsize", size + 1);
+
+                        }
+                    }
+                });
+
+            }
+            settingPop.showPopupWindow();
+
+    }
     @Override
     public void onResume() {
         super.onResume();

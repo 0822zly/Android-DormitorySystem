@@ -1,6 +1,7 @@
 package com.cnki.paotui.utils;
 
 import com.cnki.paotui.App;
+import com.cnki.paotui.bean.Book;
 import com.cnki.paotui.db.MyTravell;
 import com.cnki.paotui.db.Travell;
 import com.cnki.paotui.db.User;
@@ -202,6 +203,56 @@ public class JDBC {
         }
     }
     /**
+     * @return 查询所有攻略
+     */
+    public List<Book> queryAllCollentBook(){
+        String sql = "SELECT * FROM book" ;
+        List<Book> list=new ArrayList<Book>();
+        try {
+            connection=getConnection();
+            preparedStatement=connection.prepareStatement(sql); //获取预编译的sql语句
+            resultSet =preparedStatement.executeQuery(); //执行sql语句
+            while(resultSet.next()){
+                String id=resultSet.getString(1);
+                String title=resultSet.getString(2);
+                String url=resultSet.getString(3);
+                String cover=resultSet.getString(4);
+                String type=resultSet.getString(5);
+                String content=resultSet.getString(6);
+                String auther=resultSet.getString(7);
+                String time=resultSet.getString(8);
+                String newchaapter=resultSet.getString(9);
+               Book travel=new Book();
+                travel.id=id+"";
+                travel.title=title;
+                travel.url=url;
+                travel.cover=cover;
+                travel.type=type;
+                travel.content=content;
+                travel.auther=auther;
+                travel.time=time;
+                travel.newchapter=newchaapter;
+                list.add(travel);
+            }
+            return list;
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+            return list;
+        }finally {
+//            停止执行sql语句，关闭生成sql语句的进程以及关掉与数据库交互的连接，进而达到释放资源内存的作用
+            try {
+                resultSet.close();
+                preparedStatement.close();
+                connection.close();
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+
+        }
+    }
+    /**
      * @return 是否收藏这个攻略
      */
     public boolean queryTrallISCollent(int trallid){
@@ -212,6 +263,36 @@ public class JDBC {
             resultSet =preparedStatement.executeQuery(); //执行sql语句
             while(resultSet.next()){
                return true;
+            }
+            return false;
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+            return false;
+        }finally {
+//            停止执行sql语句，关闭生成sql语句的进程以及关掉与数据库交互的连接，进而达到释放资源内存的作用
+            try {
+                resultSet.close();
+                preparedStatement.close();
+                connection.close();
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+
+        }
+    }
+    /**
+     * @return 是否收藏这个攻略
+     */
+    public boolean queryBookISCollent(String trallid){
+        String sql = "SELECT * FROM book where id = "+trallid;
+        try {
+            connection=getConnection();
+            preparedStatement=connection.prepareStatement(sql); //获取预编译的sql语句
+            resultSet =preparedStatement.executeQuery(); //执行sql语句
+            while(resultSet.next()){
+                return true;
             }
             return false;
         } catch (SQLException e) {
@@ -264,6 +345,36 @@ public class JDBC {
     /**
      * @return 进行删除这个攻略
      */
+    public boolean deleteBook(String trallid){
+        String sql = "delete FROM book where id = "+trallid;
+        try {
+            connection=getConnection();
+            preparedStatement=connection.prepareStatement(sql); //获取预编译的sql语句
+            int a =preparedStatement.executeUpdate(); //执行sql语句
+            if(a>0){
+                return true;
+            }
+            return false;
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+            return false;
+        }finally {
+//            停止执行sql语句，关闭生成sql语句的进程以及关掉与数据库交互的连接，进而达到释放资源内存的作用
+            try {
+                resultSet.close();
+                preparedStatement.close();
+                connection.close();
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+
+        }
+    }
+    /**
+     * @return 进行删除这个攻略
+     */
     public void addTrall(int trallid){
         String sql="INSERT INTO travel_user(userid,travelid) VALUES(?,?)";
         try {
@@ -287,6 +398,7 @@ public class JDBC {
             }
         }
     }
+
     /*
      * 1、执行静态SQL语句。通常通过Statement实例实现。    这应该是某个指定的sql语句
      * 2、执行动态SQL语句。通常通过PreparedStatement实例实现。    但这应该是多条（much manty）sql语句
@@ -351,7 +463,41 @@ public class JDBC {
                 }
             }
     }
-
+    /**
+     * 插入一条行程安排
+     * @param myTravell
+     * @return
+     */
+    public int insertBook(Book myTravell){
+        String sql="INSERT INTO book(id,title,url,cover,type,content,auther,time,newchapter) VALUES(?,?,?,?,?,?,?,?,?)";
+        try {
+            connection=getConnection();
+            preparedStatement =connection.prepareStatement(sql); //错误： Duplicate entry '3' for key 'PRIMARY'---》主键重复输入“3”  因为当我看看表的时候才发现我的3、肖文飞、15已经在数据库被创建了
+            preparedStatement.setString(1,myTravell.id);
+            preparedStatement.setString(2, myTravell.title);
+            preparedStatement.setString(3, myTravell.url);
+            preparedStatement.setString(4, myTravell.cover);
+            preparedStatement.setString(5, myTravell.type);
+            preparedStatement.setString(6, myTravell.content);
+            preparedStatement.setString(7, myTravell.auther);
+            preparedStatement.setString(8, myTravell.time);
+            preparedStatement.setString(9, myTravell.newchapter);
+            return   preparedStatement.executeUpdate();
+            //  System.out.println("已经成功添加创建了一条新的数据了");
+        } catch (SQLException e) {
+            //  System.out.println("重复添加一条数据，即已经被添加或被创建了");
+            e.printStackTrace();
+            return -1;
+        }finally {
+            try {
+                preparedStatement.close();
+                connection.close();
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+    }
     /**
      * @return 查询所有的行程安排
      */
@@ -404,6 +550,7 @@ public class JDBC {
 
         }
     }
+
     public void insertAllTrall(List<Travell> travells){
         String sql = "INSERT INTO travel(id,title,avatar,name,content,pictureNumber,commentNumber,viewNumber,imageUrl,jumpUrl) VALUES(?,?,?,?,?,?,?,?,?,?)";
         try {

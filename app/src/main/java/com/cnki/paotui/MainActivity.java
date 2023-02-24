@@ -1,6 +1,7 @@
 package com.cnki.paotui;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.MenuItem;
 
 import com.cnki.paotui.db.Travell;
@@ -9,6 +10,7 @@ import com.cnki.paotui.ui.home.HomeFragment;
 import com.cnki.paotui.ui.notifications.NotificationsFragment;
 import com.cnki.paotui.ui.person.PersonFragment;
 import com.cnki.paotui.utils.JDBC;
+import com.cnki.paotui.utils.SPUtil;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.annotation.NonNull;
@@ -100,7 +102,12 @@ public class MainActivity extends AppCompatActivity {
 new Thread(new Runnable() {
     @Override
     public void run() {
-      //  preJson();
+     if(TextUtils.isEmpty(SPUtil.getInstance().getString("textcolor"))){
+         SPUtil.getInstance().setValue("textcolor","#C8E4CB");
+     }
+        if(SPUtil.getInstance().getInt("textsize")==0){
+            SPUtil.getInstance().setValue("textsize",14);
+        }
     }
 }).start();
     }
