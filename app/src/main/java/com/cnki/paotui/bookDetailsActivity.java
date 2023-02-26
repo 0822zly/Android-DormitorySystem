@@ -1,12 +1,15 @@
 package com.cnki.paotui;
 
 import android.content.Intent;
+import android.graphics.Paint;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.Html;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -23,6 +26,8 @@ import com.cnki.paotui.bean.Book;
 import com.cnki.paotui.databinding.ActivityBookBinding;
 import com.cnki.paotui.utils.JDBC;
 import com.cnki.paotui.utils.ThreadPoolExecutorUtil;
+import com.cnki.paotui.utils.ViewUtils;
+import com.google.android.flexbox.FlexboxLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 
@@ -76,7 +81,17 @@ public class bookDetailsActivity extends BaseActivity{
                 mContext.startActivity(intent);
             }
         });
+        viewBinding.tvAuther.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
+
         recyclerView.setAdapter(bookChapterAdaper);
+        viewBinding.tvAuther.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(mContext,AutherActivity.class);
+                intent.putExtra("title",book.auther);
+                mContext.startActivity(intent);
+            }
+        });
         viewBinding.smartrefreshlayout.setEnableLoadMore(true);
         viewBinding.smartrefreshlayout.setEnableRefresh(false);
         viewBinding.smartrefreshlayout.setOnLoadMoreListener(new OnLoadMoreListener() {
@@ -116,7 +131,7 @@ public class bookDetailsActivity extends BaseActivity{
         });
         getData();
         getChapter();
-        refreshCollent();
+
     }
     private void refreshCollent(){
         ThreadPoolExecutorUtil.doTask(new Runnable() {
@@ -138,8 +153,10 @@ public class bookDetailsActivity extends BaseActivity{
 
 
     }
+
     int index=1;
    Book book=new Book();
+   List<Book> listTuijian=new ArrayList<>();
     private void getData(){
         ThreadPoolExecutorUtil.doTask(new Runnable() {
 
@@ -181,7 +198,23 @@ public class bookDetailsActivity extends BaseActivity{
                     String content=elementintro.html();
                     book.content=content;
                 }
-
+                //获取推荐数据
+                Elements tjlist = doc.getElementsByClass("tjlist");
+                if(tjlist!=null&&tjlist.size()>0){
+                    Element element = tjlist.get(0);
+                    Elements as = element.getElementsByTag("a");
+                    if(as!=null&&as.size()>0){
+                        for (Element elementA:as
+                             ) {
+                            Book book1=new Book();
+                            book1.url=elementA.attr("href");
+                            book1.title=elementA.text();
+                            listTuijian.add(book1);
+                        }
+                    }
+                }
+                JDBC.getInstance().insertHistoryBook(book);
+                refreshCollent();
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
@@ -190,6 +223,39 @@ public class bookDetailsActivity extends BaseActivity{
                         viewBinding.tvAuther.setText(TextUtils.isEmpty(book.auther)?"":book.auther);
                         viewBinding.tvInfo.setText(Html.fromHtml(TextUtils.isEmpty(book.content)?"":book.content));
                        viewBinding.sdsdsd.setText(TextUtils.isEmpty(book.title)?"":book.title);
+                        for (Book book1 : listTuijian) {
+                            TextView tv=new TextView(mContext);
+                            tv.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    Intent intent=new Intent(mContext,bookDetailsActivity.class);
+                                    intent.putExtra("url",book1.url);
+                                    mContext.startActivity(intent);
+                                }
+                            });
+                            viewBinding.itemLineMark.addView(tv);
+                            tv.setTextColor(mContext.getResources().getColor(R.color.tinkcolor));
+                            setbackRadiusDrawable(tv,4f,mContext.getResources().getColor(R.color.bg_04));
+                            tv.setPadding(10,5,10,5);
+                            tv.setMaxLines(1);
+                            tv.setText(book1.title);
+                            FlexboxLayout.LayoutParams layoutParams=new  FlexboxLayout.LayoutParams(FlexboxLayout.LayoutParams.WRAP_CONTENT, FlexboxLayout.LayoutParams.WRAP_CONTENT);
+                            layoutParams.setMargins(20,10,0,20);
+                            tv.setLayoutParams(layoutParams);
+
+//                            viewBinding.itemLineMark.addView(TextView(context).apply {
+//
+//                                setPadding(10,5,10,5)
+//                                // isSingleLine
+//                                maxLines=1
+//                                text=it
+//                                layoutParams=  FlexboxLayout.LayoutParams(FlexboxLayout.LayoutParams.WRAP_CONTENT, FlexboxLayout.LayoutParams.WRAP_CONTENT).apply {
+//                                    setMargins(10,0,0,10)
+//                                }
+//
+//                            })
+                        }
+
                     }
                 });
             }
@@ -198,6 +264,15 @@ public class bookDetailsActivity extends BaseActivity{
     }
     boolean havemore=true;
     int total=0 ;
+    private void  setbackRadiusDrawable( View view,float radius,  int color) {
+        GradientDrawable drawable =new GradientDrawable() ;
+        drawable.setShape(GradientDrawable.RECTANGLE);
+        drawable.setColor(color);
+        float re=ViewUtils.dp2px(mContext, radius);
+        drawable.setCornerRadius(re);
+        // drawable.setStroke(ViewUtils.dp2px(context, ViewUtils.dp2px(context, 0F, Color.TRANSPARENT)
+        view.setBackground(drawable);
+    }
   private String getchapterUrl(){
 
       return "index_"+index+".html";

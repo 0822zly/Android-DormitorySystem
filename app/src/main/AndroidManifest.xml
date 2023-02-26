@@ -37,18 +37,25 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="28">
         <activity
+            android:name=".MyAccountActivity"
+            android:label="我的账号"
+            android:exported="false">
+
+        </activity>
+        <activity
+            android:name=".AutherActivity"
+            android:exported="false">
+
+        </activity>
+        <activity
             android:name=".SearchActivity"
             android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
+
         </activity>
         <activity
             android:name=".ReadActivity"
             android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
+
         </activity>
         <activity
             android:name=".JingdianActivity"
@@ -95,11 +102,26 @@
             />
         </activity>
         <activity
+            android:name=".HistoryActivity"
+            android:exported="false"
+            android:label="搜索历史">
+            />
+        </activity>
+
+        <activity
             android:name=".AbortActivity"
             android:exported="false"
             android:label="关于">
             />
         </activity>
+
+        <activity
+            android:name=".HistoryBookActivity"
+            android:exported="false"
+            android:label="浏览历史">
+            />
+        </activity>
+
         <activity
             android:name=".bookDetailsActivity"
             android:exported="false">

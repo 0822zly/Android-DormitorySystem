@@ -22,9 +22,14 @@
             android:id="@+id/searchvew"></androidx.appcompat.widget.SearchView>
     </FrameLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:layout_width="match_parent"
-        android:padding="16dp"
-        android:layout_height="match_parent"
-        android:id="@+id/listview"></androidx.recyclerview.widget.RecyclerView>
+        android:layout_height="wrap_content"
+        android:id="@+id/smartrefreshlayout">
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:padding="16dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/listview"></androidx.recyclerview.widget.RecyclerView>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 </LinearLayout>

@@ -1,5 +1,6 @@
 package com.cnki.paotui.adapter;
 
+import android.text.TextUtils;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
@@ -27,7 +28,11 @@ public class BookOrderAdaper extends BaseQuickAdapter<Book, BaseViewHolder> {
         Book book=item;
         holder.setText(R.id.tv_title, item.title);
         holder.setText(R.id.tv_auther, item.auther);
-        holder.setText(R.id.tv_newc, item.newchapter);
+        if(TextUtils.isEmpty(item.newchapter)){
+            holder.setGone(R.id.tv_newc,true);
+        }else {
+            holder.setText(R.id.tv_newc, item.newchapter);
+        }
         holder.setText(R.id.tv_time, item.time);
 
     }

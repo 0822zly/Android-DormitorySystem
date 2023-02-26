@@ -25,6 +25,7 @@ import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 
 public class WelComeActivity  extends BaseActivity{
+    private boolean oPen;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,19 +34,31 @@ public class WelComeActivity  extends BaseActivity{
         ImmersionBar.with(this).transparentBar().init();
 
         int arr[]={R.mipmap.banner1,R.mipmap.banner2};
+        ThreadPoolExecutorUtil.doTask(new Runnable() {
+
+
+
+            @Override
+            public void run() {
+                oPen = JDBC.getInstance().isOPen();
+            }
+        });
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-
-                if(SPUtil.getInstance().getBoolean(Ikeys.ISNOTFRISTCOMEIN)){
-                    Intent intent=new Intent(mContext, LoginActivity.class);
-                    mContext.startActivity(intent);
-                }else {
-                    Intent intent=new Intent(mContext,LoginActivity.class);
-                    mContext.startActivity(intent);
-                }
-                SPUtil.getInstance().setValue(Ikeys.ISNOTFRISTCOMEIN,true);
-                finish();
+                   if(oPen) {
+                       if (SPUtil.getInstance().getBoolean(Ikeys.ISNOTFRISTCOMEIN)) {
+                           Intent intent = new Intent(mContext, LoginActivity.class);
+                           mContext.startActivity(intent);
+                       } else {
+                           Intent intent = new Intent(mContext, LoginActivity.class);
+                           mContext.startActivity(intent);
+                       }
+                       SPUtil.getInstance().setValue(Ikeys.ISNOTFRISTCOMEIN, true);
+                       finish();
+                   }else {
+                       finish();
+                   }
             }
         },2000);
         if (SPUtil.getInstance().getBoolean(Ikeys.ISAUTOLOGIN)) {

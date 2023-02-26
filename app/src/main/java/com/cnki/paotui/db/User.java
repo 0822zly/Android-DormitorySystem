@@ -44,6 +44,7 @@ public class User {
     public String username;
     @DatabaseField
     public String password;
+    public String password1;
     @DatabaseField
     public String url;
     @DatabaseField(canBeNull = false)

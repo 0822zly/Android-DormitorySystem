@@ -25,8 +25,11 @@ import com.cnki.paotui.AddBookActivity;
 import com.cnki.paotui.App;
 import com.cnki.paotui.Event;
 import com.cnki.paotui.GlideEngine;
+import com.cnki.paotui.HistoryActivity;
+import com.cnki.paotui.HistoryBookActivity;
 import com.cnki.paotui.Ikeys;
 import com.cnki.paotui.MainActivity;
+import com.cnki.paotui.MyAccountActivity;
 import com.cnki.paotui.MyCollentActivity;
 import com.cnki.paotui.MyTrallActivity;
 import com.cnki.paotui.R;
@@ -118,7 +121,17 @@ public class PersonFragment extends Fragment {
             binding.lineXingcheng.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    Intent intent=new Intent(getActivity(), MyAccountActivity.class);
 
+                    getActivity().startActivity(intent);
+                }
+            });
+            binding.history.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent=new Intent(getActivity(), HistoryBookActivity.class);
+
+                    getActivity().startActivity(intent);
                 }
             });
             if(!TextUtils.isEmpty(App.user.url)){
@@ -133,7 +146,13 @@ public class PersonFragment extends Fragment {
                     getActivity().startActivity(intent);
                 }
             });
-
+            binding.searchhistory1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent=new Intent(getActivity(), HistoryActivity.class);
+                    startActivity(intent);
+                }
+            });
             binding.imagePhoto.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

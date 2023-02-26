@@ -27,6 +27,7 @@ import com.gyf.immersionbar.ImmersionBar;
 public class RegisterActivity extends BaseActivity{
     private EditText username;
     private EditText password;
+    private EditText password1;
     private Button login;
     private ProgressBar loading;
     @Override
@@ -37,6 +38,7 @@ public class RegisterActivity extends BaseActivity{
         ImmersionBar.with(this).transparentBar().init();
         username=findViewById(R.id.username);
         password=findViewById(R.id.password);
+        password1=findViewById(R.id.password1);
         login=findViewById(R.id.login);
         loading=findViewById(R.id.loading);
         findViewById(R.id.back).setOnClickListener(new View.OnClickListener() {
@@ -51,6 +53,7 @@ public class RegisterActivity extends BaseActivity{
             public void onClick(View view) {
                 String user=username.getText().toString();
                 String pass=password.getText().toString();
+                String pass1=password1.getText().toString();
                 if(TextUtils.isEmpty(user)||TextUtils.isEmpty(pass)){
                     Toast.makeText(mContext, "用户名和密码不能为空", Toast.LENGTH_SHORT).show();
                     return;
@@ -59,10 +62,14 @@ public class RegisterActivity extends BaseActivity{
                     Toast.makeText(mContext, "用户名和密码必须大于6位", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                if(TextUtils.isEmpty(pass1)){
+                    Toast.makeText(mContext, "密保问题不能为空", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                new Thread(new Runnable() {
                    @Override
                    public void run() {
-                       int i = JDBC.getInstance().insertUser(user, pass);
+                       int i = JDBC.getInstance().insertUser(user, pass,pass1);
                        if(i>0) {
                            handler.post(new Runnable() {
                                @Override

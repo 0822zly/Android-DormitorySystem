@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
+import com.cnki.paotui.HistoryActivity;
 import com.cnki.paotui.R;
 import com.cnki.paotui.SearchActivity;
 import com.cnki.paotui.TypeActivity;
@@ -93,6 +94,7 @@ public class HomeFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
         mRootView.findViewById(R.id.zuixin).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
