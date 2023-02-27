@@ -13,6 +13,7 @@ import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
+import com.cnki.paotui.adapter.BookAdaper;
 import com.cnki.paotui.adapter.BookOrderAdaper;
 import com.cnki.paotui.bean.Book;
 import com.cnki.paotui.utils.JDBC;
@@ -31,7 +32,7 @@ import java.util.List;
 public class AutherActivity extends BaseActivity {
 
     private RecyclerView recyclerview;
-    private BookOrderAdaper bookOrderAdaper;
+    private BookAdaper bookOrderAdaper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +40,7 @@ public class AutherActivity extends BaseActivity {
         setContentView(R.layout.activity_auther);
         recyclerview = findViewById(R.id.recyclerview);
         getSupportActionBar().setTitle(getIntent().getStringExtra("title"));
-           bookOrderAdaper = new BookOrderAdaper(R.layout.item_book_order);
+           bookOrderAdaper = new BookAdaper(R.layout.item_home_book);
         bookOrderAdaper.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(@NonNull BaseQuickAdapter<?, ?> adapter, @NonNull View view, int position) {

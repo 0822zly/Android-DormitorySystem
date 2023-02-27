@@ -759,6 +759,8 @@ public class JDBC {
                 Book book=new Book();
                 book.title=title;
                 book.url=url;
+                book.id=book.url.split("/")[book.url.split("/").length-1];
+
                 book.auther=auther;
                 book.time=time;
                 list.add(book);
@@ -800,6 +802,7 @@ public class JDBC {
                 Book book=new Book();
                 book.title=title;
                 book.url=url;
+                book.id=book.url.split("/")[book.url.split("/").length-1];
                 book.auther=auther;
                 book.time=time;
                 list.add(book);

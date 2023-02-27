@@ -32,7 +32,6 @@ public class HistoryActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auther);
         recyclerview = findViewById(R.id.recyclerview);
-        getSupportActionBar().setTitle(getIntent().getStringExtra("title"));
            bookOrderAdaper = new HistoryAdaper(R.layout.item_history);
 
         recyclerview.setLayoutManager(new LinearLayoutManager(mContext));

@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
+import com.cnki.paotui.adapter.BookAdaper;
 import com.cnki.paotui.adapter.BookOrderAdaper;
 import com.cnki.paotui.bean.Book;
 import com.cnki.paotui.utils.ThreadPoolExecutorUtil;
@@ -35,7 +36,7 @@ import java.util.List;
  */
 public class TypeActivity extends BaseActivity{
     Handler handler=new Handler(Looper.getMainLooper());
-    private BookOrderAdaper bookOrderAdaper;
+      private BookAdaper bookOrderAdaper;;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -44,7 +45,7 @@ public class TypeActivity extends BaseActivity{
         getSupportActionBar().setTitle(arrTitle[getIntent().getIntExtra("key",0)]);
         RecyclerView recyclerView=findViewById(R.id.listview);
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
-        bookOrderAdaper = new BookOrderAdaper(R.layout.item_book_order);
+        bookOrderAdaper = new BookAdaper(R.layout.item_home_book);
         bookOrderAdaper.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(@NonNull BaseQuickAdapter<?, ?> adapter, @NonNull View view, int position) {
