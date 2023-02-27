@@ -32,30 +32,30 @@ android {
     viewBinding {
         enabled = true
     }
-//    signingConfigs {
-//
-//        debug
-//                {
-//                    keyAlias 'key0'
-//                    keyPassword '123456'
-//                    storeFile file('paotui.jks')
-//                    storePassword '123456'
-//
-//                    v1SigningEnabled true
-//                    v2SigningEnabled true
-//                }
-//        release
-//                {
-//                    keyAlias 'key0'
-//                    keyPassword '123456'
-//                    storeFile file('paotui.jks')
-//                    storePassword '123456'
-//
-//                    v1SigningEnabled true
-//                    v2SigningEnabled true
-//                }
-//
-//    }
+    signingConfigs {
+
+        debug
+                {
+                    keyAlias 'key0'
+                    keyPassword '123456'
+                    storeFile file('paotui.jks')
+                    storePassword '123456'
+
+                    v1SigningEnabled true
+                    v2SigningEnabled true
+                }
+        release
+                {
+                    keyAlias 'key0'
+                    keyPassword '123456'
+                    storeFile file('paotui.jks')
+                    storePassword '123456'
+
+                    v1SigningEnabled true
+                    v2SigningEnabled true
+                }
+
+    }
     sourceSets {
         main {
             jniLibs.srcDirs = ['libs']

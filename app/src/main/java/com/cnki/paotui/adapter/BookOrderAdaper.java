@@ -36,4 +36,5 @@ public class BookOrderAdaper extends BaseQuickAdapter<Book, BaseViewHolder> {
         holder.setText(R.id.tv_time, item.time);
 
     }
+
 }
