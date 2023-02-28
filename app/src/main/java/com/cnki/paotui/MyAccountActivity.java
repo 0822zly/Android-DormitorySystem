@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.cnki.paotui.databinding.ActivityMyAccountBinding;
-
+//我的账户界面
 public class MyAccountActivity extends BaseActivity {
 
     private com.cnki.paotui.databinding.ActivityMyAccountBinding viewBinding;

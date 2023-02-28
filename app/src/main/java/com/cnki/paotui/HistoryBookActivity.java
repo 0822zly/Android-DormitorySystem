@@ -19,7 +19,7 @@ import com.cnki.paotui.utils.JDBC;
 import com.cnki.paotui.utils.ThreadPoolExecutorUtil;
 
 import java.util.List;
-
+//图书浏览历史界面
 public class HistoryBookActivity extends BaseActivity {
     BookAdaper bookAdaper;
     @Override
@@ -45,6 +45,7 @@ public class HistoryBookActivity extends BaseActivity {
         ThreadPoolExecutorUtil.doTask(new Runnable() {
             @Override
             public void run() {
+                //获取浏览历史
                 List<Book> books = JDBC.getInstance().queryAllHistoryBook();
                 handler.post(new Runnable() {
                     @Override

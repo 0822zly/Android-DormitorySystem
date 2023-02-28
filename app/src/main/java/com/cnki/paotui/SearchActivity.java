@@ -36,10 +36,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 搜索图书界面
+ */
 public class SearchActivity extends BaseActivity {
 
-String url="https://www.bbiquge.net/modules/article/search.php?searchtype=articlename&searchkey=%B7%E7%C6%F0%C1%FA%B3%C7";
-String url1="https://www.bbiquge.net/modules/article/authorarticle.php?author=%CE%D2%B3%D4%CE%F7%BA%EC%CA%C1";
+
     private androidx.appcompat.widget.SearchView searchView;
     private SmartRefreshLayout refreshLayout;
     private BookOrderAdaper bookOrderAdaper;
@@ -86,6 +88,10 @@ String url1="https://www.bbiquge.net/modules/article/authorarticle.php?author=%C
             }
         });
     }
+
+    /**
+     * 搜索图书
+     */
     private void getData(){
         ThreadPoolExecutorUtil.doTask(new Runnable() {
             @Override

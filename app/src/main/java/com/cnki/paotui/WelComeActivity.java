@@ -24,6 +24,9 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 
+/**
+ * 欢迎页
+ */
 public class WelComeActivity  extends BaseActivity{
     private boolean oPen;
     @Override
@@ -33,11 +36,7 @@ public class WelComeActivity  extends BaseActivity{
         getSupportActionBar().hide();
         ImmersionBar.with(this).transparentBar().init();
 
-        int arr[]={R.mipmap.banner1,R.mipmap.banner2};
         ThreadPoolExecutorUtil.doTask(new Runnable() {
-
-
-
             @Override
             public void run() {
                 oPen = JDBC.getInstance().isOPen();
@@ -61,6 +60,7 @@ public class WelComeActivity  extends BaseActivity{
                    }
             }
         },2000);
+        //获取自动登入用户信息
         if (SPUtil.getInstance().getBoolean(Ikeys.ISAUTOLOGIN)) {
             if (!TextUtils.isEmpty(SPUtil.getInstance().getString(Ikeys.USERNAME)) && !TextUtils.isEmpty(SPUtil.getInstance().getString(Ikeys.PASSWORD))) {
 

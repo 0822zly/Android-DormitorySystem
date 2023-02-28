@@ -22,7 +22,7 @@ import com.gyf.immersionbar.ImmersionBar;
  * User: cjr
  * Date: 2023/1/15
  * Time: 13:46
- * 此类的作用为：
+ * 此类的作用为：注册
  */
 public class RegisterActivity extends BaseActivity{
     private EditText username;

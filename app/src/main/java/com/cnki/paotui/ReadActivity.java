@@ -35,7 +35,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import razerdp.basepopup.BasePopupWindow;
-
+//阅读界面
 public class ReadActivity extends AppCompatActivity {
 
     private com.cnki.paotui.databinding.ActivityReadBinding viewBinding;
@@ -49,8 +49,10 @@ public class ReadActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         viewBinding = ActivityReadBinding.inflate(getLayoutInflater());
         setContentView(viewBinding.getRoot());
+        //章节url
         url=getIntent().getStringExtra("url");
         getSupportActionBar().setTitle(getIntent().getStringExtra("title"));
+        //下一章点击事件
         viewBinding.next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -62,6 +64,7 @@ public class ReadActivity extends AppCompatActivity {
                 }
             }
         });
+        //上一章点击事件
         viewBinding.pre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -76,6 +79,10 @@ public class ReadActivity extends AppCompatActivity {
         getData();
         sefresh();
     }
+
+    /**
+     * 刷新阅读界面
+     */
     private void sefresh(){
         if(SPUtil.getInstance().getBoolean("isnight")){
             viewBinding.scroll.setBackgroundColor(Color.parseColor("#181818"));
@@ -92,6 +99,12 @@ public class ReadActivity extends AppCompatActivity {
         return true;
     }
     SettingPop settingPop;
+
+    /**
+     * 展示阅读设置popwindow
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
@@ -118,6 +131,7 @@ public class ReadActivity extends AppCompatActivity {
                         }
                     }
                 });
+                //设置背景颜色
                 bg1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -125,6 +139,7 @@ public class ReadActivity extends AppCompatActivity {
                         sefresh();
                     }
                 });
+                //设置背景颜色
                 bg2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -132,6 +147,7 @@ public class ReadActivity extends AppCompatActivity {
                         sefresh();
                     }
                 });
+                //设置背景颜色
                 bg3.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -139,6 +155,7 @@ public class ReadActivity extends AppCompatActivity {
                         sefresh();
                     }
                 });
+                //设置背景颜色
                 bg4.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -146,6 +163,7 @@ public class ReadActivity extends AppCompatActivity {
                         sefresh();
                     }
                 });
+                //设置夜间模式
                 tv_light.setOnClickListener(new View.OnClickListener() {
 
                     @Override
@@ -154,6 +172,7 @@ public class ReadActivity extends AppCompatActivity {
                         sefresh();
                     }
                 });
+                //设置白天模式
                 tv_night.setOnClickListener(new View.OnClickListener() {
 
                     @Override
@@ -162,6 +181,7 @@ public class ReadActivity extends AppCompatActivity {
                         sefresh();
                     }
                 });
+                //减一个字号
                 jian.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -175,6 +195,7 @@ public class ReadActivity extends AppCompatActivity {
                       }
                     }
                 });
+                 //加一个字号
                 jia.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -198,6 +219,7 @@ public class ReadActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
     private void getData(){
+        //获取章节信息
         ThreadPoolExecutorUtil.doTask(new Runnable() {
 
             @Override

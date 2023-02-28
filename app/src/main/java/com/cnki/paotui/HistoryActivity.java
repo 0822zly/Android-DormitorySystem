@@ -22,7 +22,7 @@ import com.cnki.paotui.utils.ThreadPoolExecutorUtil;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-
+//搜索历史界面
 public class HistoryActivity extends BaseActivity {
 
     private RecyclerView recyclerview;
@@ -38,11 +38,11 @@ public class HistoryActivity extends BaseActivity {
         recyclerview.setAdapter(bookOrderAdaper);
         getData();
     }
-    //https://www.bbiquge.net/modules/article/authorarticle.php?author=%BB%A8%D3%C4%C9%BD%D4%C2
     private void getData(){
         ThreadPoolExecutorUtil.doTask(new Runnable() {
             @Override
             public void run() {
+                //获取所有的搜索历史
                 Set<String> books = JDBC.getInstance().getAllSearch();
                 if(books!=null&&books.size()>0) {
                     handler.post(new Runnable() {

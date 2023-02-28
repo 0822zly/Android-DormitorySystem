@@ -28,7 +28,7 @@ import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
-
+//展示作者的图书界面
 public class AutherActivity extends BaseActivity {
 
     private RecyclerView recyclerview;
@@ -53,11 +53,11 @@ public class AutherActivity extends BaseActivity {
         recyclerview.setAdapter(bookOrderAdaper);
         getData();
     }
-    //https://www.bbiquge.net/modules/article/authorarticle.php?author=%BB%A8%D3%C4%C9%BD%D4%C2
     private void getData(){
         ThreadPoolExecutorUtil.doTask(new Runnable() {
             @Override
             public void run() {
+                //查询作者的图书
                 List<Book> books = JDBC.getInstance().queryAllMyBookByAuther(getIntent().getStringExtra("title"));
                 if(books!=null&&books.size()>0) {
                     handler.post(new Runnable() {

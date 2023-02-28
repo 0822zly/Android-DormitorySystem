@@ -45,7 +45,7 @@ import java.util.List;
  * User: cjr
  * Date: 2023/2/22
  * Time: 23:16
- * 此类的作用为：男频女频推荐作者
+ * 此类的作用为：图书详情页
  */
 public class bookDetailsActivity extends BaseActivity{
 
@@ -58,6 +58,7 @@ public class bookDetailsActivity extends BaseActivity{
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book);
+        //获取本界面的url
         url=getIntent().getStringExtra("url");
         viewBinding = ActivityBookBinding.inflate(getLayoutInflater());
 
@@ -72,6 +73,7 @@ public class bookDetailsActivity extends BaseActivity{
         RecyclerView recyclerView=findViewById(R.id.listview);
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         bookChapterAdaper = new BookChapterAdaper(R.layout.item_chapter);
+        //点击图书进入阅读页
         bookChapterAdaper.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(@NonNull BaseQuickAdapter<?, ?> adapter, @NonNull View view, int position) {
@@ -112,6 +114,7 @@ public class bookDetailsActivity extends BaseActivity{
                 }
             }
         });
+        //收藏点击事件
         viewBinding.collentt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -119,8 +122,10 @@ public class bookDetailsActivity extends BaseActivity{
                     @Override
                     public void run() {
                         if(isCollent){
+                            //取消收藏
                             JDBC.getInstance().deleteBook(book.id);
                         }else {
+                            //进行收藏
                             JDBC.getInstance().insertBook(book);
                         }
                         refreshCollent();
@@ -133,14 +138,17 @@ public class bookDetailsActivity extends BaseActivity{
         getChapter();
 
     }
+    //刷新界面
     private void refreshCollent(){
         ThreadPoolExecutorUtil.doTask(new Runnable() {
             @Override
             public void run() {
+                //获取收藏状态
                 isCollent = JDBC.getInstance().queryBookISCollent(book.id);
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
+                        //刷新界面
                         if(isCollent){
                             viewBinding.collentt.setBackground(mContext.getResources().getDrawable(R.mipmap.icon_new_collent));
                         }else {
@@ -157,6 +165,10 @@ public class bookDetailsActivity extends BaseActivity{
     int index=1;
    Book book=new Book();
    List<Book> listTuijian=new ArrayList<>();
+
+    /**
+     * 获取图书信息
+     */
     private void getData(){
         ThreadPoolExecutorUtil.doTask(new Runnable() {
 
@@ -273,10 +285,18 @@ public class bookDetailsActivity extends BaseActivity{
         // drawable.setStroke(ViewUtils.dp2px(context, ViewUtils.dp2px(context, 0F, Color.TRANSPARENT)
         view.setBackground(drawable);
     }
+
+    /**
+     * @return 获取章节url
+     */
   private String getchapterUrl(){
 
       return "index_"+index+".html";
     }
+
+    /**
+     * 获取章节信息
+     */
     private void getChapter(){
         ThreadPoolExecutorUtil.doTask(new Runnable() {
 

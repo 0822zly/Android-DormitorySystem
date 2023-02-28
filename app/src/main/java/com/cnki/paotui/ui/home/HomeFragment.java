@@ -62,6 +62,7 @@ public class HomeFragment extends Fragment {
                 getData();
             }
         });
+        //男频
         mRootView.findViewById(R.id.nanpin).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -70,6 +71,7 @@ public class HomeFragment extends Fragment {
                 startActivity(intent);
             }
         });
+        //女频
         mRootView.findViewById(R.id.nvpin).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -78,6 +80,7 @@ public class HomeFragment extends Fragment {
                 startActivity(intent);
             }
         });
+        //搜索按钮
         mRootView.findViewById(R.id.search).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -86,6 +89,7 @@ public class HomeFragment extends Fragment {
                 startActivity(intent);
             }
         });
+        //推荐
         mRootView.findViewById(R.id.tuijian).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -94,7 +98,7 @@ public class HomeFragment extends Fragment {
                 startActivity(intent);
             }
         });
-
+//最新
         mRootView.findViewById(R.id.zuixin).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -112,6 +116,10 @@ public class HomeFragment extends Fragment {
 
     }
     List<Book> list=new ArrayList();
+
+    /**
+     * 获取首页图书列表
+     */
     private void getData(){
         Document doc = null;
         try {

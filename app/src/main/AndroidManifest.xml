@@ -58,13 +58,6 @@
 
         </activity>
         <activity
-            android:name=".JingdianActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".WelComeActivity"
             android:exported="true">
             <intent-filter>
@@ -128,69 +121,9 @@
             />
         </activity>
         <activity
-            android:name=".MyTrallActivity"
-            android:exported="false"
-            android:label="我的行程">
-            />
-        </activity>
-        <activity
-            android:name=".AddActivity"
-            android:exported="false"
-            android:label="发布"
-            android:windowSoftInputMode="adjustResize|stateHidden">
-            />
-        </activity>
-        <activity
-            android:name=".requestActivity"
-            android:exported="false"
-            android:label="申请">
-            />
-        </activity>
-        <activity
-            android:name=".Add1Activity"
-            android:exported="false"
-            android:label="发布"
-            android:windowSoftInputMode="adjustResize|stateHidden">
-            />
-        </activity>
-        <activity
-            android:name=".WebActivity1"
-            android:exported="false"
-            android:label="发布"
-            android:windowSoftInputMode="adjustResize|stateHidden">
-            />
-        </activity>
-        <activity
-            android:name=".Add2Activity"
-            android:exported="false"
-            android:label="发布"
-            android:windowSoftInputMode="adjustResize|stateHidden">
-            />
-        </activity>
-        <activity
             android:name=".ui.login.LoginActivity"
             android:exported="true"
             android:label="登录" />
-        <activity
-            android:name=".AddTralltion"
-            android:exported="true"
-            android:label="添加旅程" />
-        <activity
-            android:name=".PoiActivity"
-            android:exported="true"
-            android:label="添加旅程" />
-        <activity
-            android:name=".MyCollentActivity"
-            android:exported="true"
-            android:label="我得收藏" />
-        <activity
-            android:name=".MapActivity"
-            android:exported="true"
-            android:label="登录" />
-        <activity
-            android:name=".PoiSearchActivity"
-            android:exported="true"
-            android:label="搜索酒店" />
         <activity
             android:name=".SplashActivity"
             android:exported="true" /> <!-- //别忘了换成你自己的包名,另外这个字符串就是EasyPhotos.setFileProviderAuthoritiesText()的参数 -->

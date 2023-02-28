@@ -66,6 +66,10 @@ public class TypeActivity extends BaseActivity{
             "女频",//女性
             "推荐",//热门
             "最新"};//最新
+
+    /**
+     * 获取图书列表信息
+     */
     private void getData(){
         ThreadPoolExecutorUtil.doTask(new Runnable() {
 

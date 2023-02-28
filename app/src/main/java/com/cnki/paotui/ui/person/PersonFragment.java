@@ -3,12 +3,10 @@ package com.cnki.paotui.ui.person;
 import static com.cnki.paotui.Ikeys.ISFROMMAIN;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
@@ -23,22 +21,14 @@ import androidx.fragment.app.Fragment;
 import com.cnki.paotui.AbortActivity;
 import com.cnki.paotui.AddBookActivity;
 import com.cnki.paotui.App;
-import com.cnki.paotui.Event;
 import com.cnki.paotui.GlideEngine;
 import com.cnki.paotui.HistoryActivity;
 import com.cnki.paotui.HistoryBookActivity;
 import com.cnki.paotui.Ikeys;
-import com.cnki.paotui.MainActivity;
 import com.cnki.paotui.MyAccountActivity;
-import com.cnki.paotui.MyCollentActivity;
-import com.cnki.paotui.MyTrallActivity;
 import com.cnki.paotui.R;
-import com.cnki.paotui.ReadActivity;
 import com.cnki.paotui.databinding.FragmentPersonBinding;
-import com.cnki.paotui.db.Order;
-import com.cnki.paotui.db.OrderDao;
 import com.cnki.paotui.db.UserDao;
-import com.cnki.paotui.requestActivity;
 import com.cnki.paotui.ui.login.LoginActivity;
 import com.cnki.paotui.ui.pop.SettingPop;
 import com.cnki.paotui.utils.SPUtil;
@@ -46,10 +36,7 @@ import com.huantansheng.easyphotos.EasyPhotos;
 import com.huantansheng.easyphotos.callback.SelectCallback;
 import com.huantansheng.easyphotos.models.album.entity.Photo;
 
-import org.greenrobot.eventbus.EventBus;
-
 import java.util.ArrayList;
-import java.util.List;
 
 public class PersonFragment extends Fragment {
 
@@ -138,6 +125,7 @@ public class PersonFragment extends Fragment {
                 binding.imagePhoto.setImageURI(Uri.parse(App.user.url));
             }
             binding.tvName.setText(SPUtil.getInstance().getString(Ikeys.USERNAME));
+            //我的收藏
             binding.lineShenqing.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -146,6 +134,7 @@ public class PersonFragment extends Fragment {
                     getActivity().startActivity(intent);
                 }
             });
+            //搜索历史
             binding.searchhistory1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -153,12 +142,14 @@ public class PersonFragment extends Fragment {
                     startActivity(intent);
                 }
             });
+            //头像
             binding.imagePhoto.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     showChoceImage(binding.imagePhoto);
                 }
             });
+            //关于软件
             binding.guanyu.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -166,6 +157,7 @@ public class PersonFragment extends Fragment {
                     getActivity().startActivity(intent);
                 }
             });
+            //设置
             binding.setting.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -300,6 +292,7 @@ public class PersonFragment extends Fragment {
         super.onDestroyView();
 
     }
+    //选择图片
     private void showChoceImage(ImageView iamge){
         EasyPhotos.createAlbum(this, true,false, GlideEngine.getInstance())//参数说明：上下文，是否显示相机按钮，是否使用宽高数据（false时宽高数据为0，扫描速度更快），[配置Glide为图片加载引擎](https://github.com/HuanTanSheng/EasyPhotos/wiki/12-%E9%85%8D%E7%BD%AEImageEngine%EF%BC%8C%E6%94%AF%E6%8C%81%E6%89%80%E6%9C%89%E5%9B%BE%E7%89%87%E5%8A%A0%E8%BD%BD%E5%BA%93)
                 .setFileProviderAuthority("com.cnki.paotui.fileprovider")//参数说明：见下方`FileProvider的配置`
